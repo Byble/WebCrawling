@@ -23,14 +23,14 @@ sql = "INSERT INTO recommend(name, address, contents) VALUES(%s,%s,%s)"
 workbook = xlwt.Workbook(encoding='utf-8')
 workbook.default_style.font.height = 20*11
 
-worksheet = workbook.add_sheet(u'시트')
+worksheet = workbook.add_sheet(u'seat')
 
 font_style = xlwt.easyxf('font:height 280;')
 worksheet.row(0).set_style(font_style)
 
-worksheet.write_merge(0,0,0,1,u"이름")
-worksheet.write_merge(0,0,2,3,u"주소")
-worksheet.write_merge(0,0,4,5,u"본문")
+worksheet.write_merge(0,0,0,1,u"name")
+worksheet.write_merge(0,0,2,3,u"address")
+worksheet.write_merge(0,0,4,5,u"description")
 
 sheetxNum = 1
 sheetyNum = 1
@@ -40,7 +40,7 @@ pageNumber = 3
 
 broswer = webdriver.Chrome('/Users/kimmingug/Desktop/StudyRecommend/chromedriver') #Your chromedriver location
 
-searching = "C 언어"
+searching = "C language"
 url = "https://www.youtube.com"
 broswer.get(url)
 
@@ -102,8 +102,8 @@ for i in VideoList:
         print(ContentBody)
         # worksheet.write_merge(sheetxNum,sheetyNum, 4, 5, ContentBody)
     except AttributeError:
-        print("본문이 없습니다.")
-    print('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ')
+        print("No Description.")
+    print('----------------------------------------------')
     curs.execute(sql, (titleName, link, ContentBody))
     # sheetxNum = sheetxNum + 1
     # sheetyNum = sheetyNum + 1
